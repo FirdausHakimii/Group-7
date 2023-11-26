@@ -1,0 +1,49 @@
+<!--search_results.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Define the character set and viewport for responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+
+    <!-- Link to the external CSS file for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <!-- Container to hold the content of the page -->
+    <div class="container">
+
+        <!-- Heading for the search results page -->
+        <h1>Search Results</h1>
+
+        <!-- Unordered list to display search results -->
+        <ul class="search-results-list">
+            {% for book in results %}
+                <!-- List item for each book in the search results -->
+                <li class="search-result">
+
+                    <!-- Display the book cover image with a maximum width and height -->
+					<img src="{{ url_for('static', filename='images/' + book['cover_image']) }}" alt="{{ book.title }} Image" style="max-width: 100px; max-height: 150px;">
+
+                    <!-- Container for the details of each search result -->
+                    <div class="search-result-details">
+                        <!-- Display the book title and author -->
+                        <p>{{ book.title }} by {{ book.author }}</p>
+
+                        <!-- Display the genre of the book -->
+                        <p>Genre: {{ book.genre }}</p>
+
+                        <!-- Display the price of the book -->
+                        <p>Price: ${{ book.price }}</p>
+
+                        <!-- Link to add the book to the shopping cart -->
+                        <a href="{{ url_for('add_to_cart', book_index=catalog.index(book)) }}" class="add-to-cart">Add to Cart</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

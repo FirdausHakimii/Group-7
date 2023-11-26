@@ -19,3 +19,19 @@ catalog = [
 def home():
     return render_template('index.html', catalog=catalog)
     
+@app.route('/search', methods=['POST'])
+def search():
+
+    # Retrieve the search query from the form
+    query = request.form.get('query')
+
+    # Filter books based on the query (case-insensitive)
+    results = [{'title': book['title'],
+                'author': book['author'],
+                'genre': book['genre'],
+                'price': book['price'],
+                'cover_image': book['cover_image']} for book in catalog
+               if query.lower() in book['title'].lower() or query.lower() in book['author'].lower()]
+    return render_template('search_results.html', results=results, catalog=catalog)
+
+
