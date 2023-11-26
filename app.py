@@ -18,7 +18,8 @@ catalog = [
 @app.route('/')
 def home():
     return render_template('index.html', catalog=catalog)
-    
+
+
 @app.route('/search', methods=['POST'])
 def search():
 
@@ -33,5 +34,51 @@ def search():
                 'cover_image': book['cover_image']} for book in catalog
                if query.lower() in book['title'].lower() or query.lower() in book['author'].lower()]
     return render_template('search_results.html', results=results, catalog=catalog)
+
+ 
+@app.route('/add_to_cart/<int:book_index>')
+
+
+def add_to_cart(book_index):
+    # Retrieve the existing cart from the session or initialize an empty list
+    cart = session.get('cart', [])
+    cart.append(book_index)
+
+    # Update the session with the modified cart
+    session['cart'] = cart
+
+    print("Updated Cart Indices:", session['cart'])  # Add this line for debugging
+    return redirect(url_for('home'))
+
+
+
+@app.route('/cart')
+
+
+@app.route('/cart')
+def view_cart():
+    # Retrieve the indices of books in the cart from the session
+    cart_indices = session.get('cart', [])
+
+    # Create a list of unique books in the cart with their quantities
+    cart = [{'book': catalog[index], 'quantity': cart_indices.count(index)} for index in set(cart_indices)]
+
+    # Calculate the total price of items in the cart
+    total_price = sum(item['book']['price'] * item['quantity'] for item in cart)
+    return render_template('cart.html', cart=cart, total_price=round(total_price,2))
+
+
+#_______________________________________________________________
+
+# Add a route for clearing the cart
+@app.route('/clear_cart')
+def clear_cart():
+    session.pop('cart', None)
+    return redirect(url_for('home'))
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+#_______________________________________________________________________________________________
 
 

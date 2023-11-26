@@ -1,0 +1,56 @@
+<!-- cart.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Define the character set and viewport for responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+
+    <!-- Link to the external CSS file for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Container to hold the content of the page -->
+    <div class="container">
+
+        <!-- Heading for the shopping cart page -->
+        <h1>Shopping Cart</h1>
+
+        <!-- Check if the cart is not empty -->
+        {% if cart %}
+            <!-- Display a list of items in the shopping cart -->
+            <ul class="cart-list">
+                {% for item in cart %}
+                    <!-- Display details for each item in the cart -->
+                    <li class="cart-item">
+                        <!-- Display the book cover image with a maximum width and height -->
+						<img src="{{ url_for('static', filename='images/' + item['book']['cover_image']) }}" alt="{{ item['book']['title'] }} Image" style="max-width: 100px; max-height: 150px;">
+						
+                        <!-- Container for the details of each item in the cart -->
+                        <div class="cart-item-details">
+                            <!-- Display the book title and author of the item -->
+                            <p>{{ item['book']['title'] }} by {{ item['book']['author'] }}</p>
+                            <p>Genre: {{ item['book']['genre'] }}</p>
+                            <p>Price: ${{ item['book']['price'] }} each</p>
+                            <p>Quantity: {{ item['quantity'] }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <!-- Display the total price of all items in the cart -->
+            <p class="total-price">Total Price: ${{ total_price }}</p>
+    
+        {% else %}
+            <!-- Display a message if the cart is empty -->
+            <p>Your cart is empty.</p>
+        {% endif %}
+
+        <!-- Form to clear the entire cart -->
+        <form action="{{ url_for('clear_cart') }}" method="get" class="clear-cart-form">
+            <button type="submit" class="clear-cart-button">Clear Cart</button>
+        </form>
+    </div>
+</body>
+</html>
