@@ -1,3 +1,9 @@
+# Group 7
+# Group members:
+# 1. Muhammad Firdaus Hakimi
+# 2. Abdullah Aiman bin Jaafar - B21MJ0001
+# 3. Syarif Hidayatullah bin Muhmmad Nasir - A21MM0093
+
 
 from flask import Flask, render_template, request, redirect, url_for, session
 
@@ -37,8 +43,6 @@ def search():
 
  
 @app.route('/add_to_cart/<int:book_index>')
-
-
 def add_to_cart(book_index):
     # Retrieve the existing cart from the session or initialize an empty list
     cart = session.get('cart', [])
@@ -49,10 +53,6 @@ def add_to_cart(book_index):
 
     print("Updated Cart Indices:", session['cart'])  # Add this line for debugging
     return redirect(url_for('home'))
-
-
-
-@app.route('/cart')
 
 
 @app.route('/cart')
