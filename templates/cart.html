@@ -39,12 +39,20 @@
                 {% endfor %}
             </ul>
 
+			<!-- Display the user's current balance -->
+			<p>Current Balance: ${{ user_balance }}</p>
+
             <!-- Display the total price of all items in the cart -->
             <p class="total-price">Total Price: ${{ total_price }}</p>
+    
+            <!-- Link to proceed to purchase -->
+            <a href="{{ purchase_link }}" class="purchase-link">Proceed to Purchase</a>
     
         {% else %}
             <!-- Display a message if the cart is empty -->
             <p>Your cart is empty.</p>
+			<!-- Display the user's current balance -->
+			<p>Current Balance: ${{ user_balance }}</p>
         {% endif %}
 
         <!-- Form to clear the entire cart -->

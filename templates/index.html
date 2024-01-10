@@ -17,6 +17,14 @@
         <!-- Heading for the main page -->
         <h1>Welcome to Our Online Bookstore</h1>
 
+        <div class="navigation">
+            {% if 'username' in session %}
+                <p>Welcome, {{ session['username'] }}! <a href="{{ url_for('logout') }}">Logout</a></p>
+            {% else %}
+                <p><a href="{{ url_for('login') }}">Login</a> or <a href="{{ url_for('signup') }}">Sign Up</a></p>
+            {% endif %}
+        </div>
+
         <!-- Search form for searching books by title or author -->
         <form action="{{ url_for('search') }}" method="post" class="search-form">
             <input type="text" id="query" name="query" placeholder="Search by title or author" required>

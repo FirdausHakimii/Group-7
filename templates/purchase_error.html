@@ -1,0 +1,17 @@
+<!-- purchase_error.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Error</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Purchase Error</h1>
+        <p>Sorry, you do not have enough balance to make this purchase.</p>
+        <p><a href="{{ url_for('home') }}">Go Back</a></p>
+    </div>
+</body>
+</html>
