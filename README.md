@@ -1,6 +1,6 @@
 # Online Bookstore
 
-This is a simple online bookstore web application built using Python and Flask.
+This is a simple online bookstore web application built using Python, Flask and SQLAlchemy.
 
 ## Features
 
@@ -9,6 +9,11 @@ This is a simple online bookstore web application built using Python and Flask.
 - Add books to a shopping cart.
 - View the contents of the shopping cart.
 - Clear the entire shopping cart.
+
+  Assignment 2 updated
+- First time user sign up.
+- user login and logout.
+- Checkout books in cart.
 
 ## Prerequisites
 
@@ -29,6 +34,13 @@ This is a simple online bookstore web application built using Python and Flask.
 - Click "Add to Cart" to add a book to your shopping cart.
 - View your shopping cart by clicking on the "Cart" link.
 - Clear your entire shopping cart by clicking the "Clear Cart" button.
+
+  Assignment 2 updated
+- Click "Login" to direct to login page.
+- Insert username and password to login.
+- First time sign up by clicking the "sign up" on the login page.
+- Click "logout" to logout from account.
+- Click "Proceed to Purchase" to complete the purchase.
 
 # Assignment 2
 
